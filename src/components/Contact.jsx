@@ -10,8 +10,7 @@ export default function Contact() {
         Contact
       </Reveal>
       <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-ink-soft">
-        Open to PhD positions and research collaborations in scientific machine learning. Email is
-        the quickest way to reach me.
+        The best way to reach me is by email.
       </p>
 
       <ul className="mt-6 space-y-2.5">

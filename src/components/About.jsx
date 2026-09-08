@@ -11,13 +11,7 @@ export default function About() {
             <span className="font-light">{profile.lastName}</span>
           </h1>
 
-          <p className="mt-2 text-[0.98rem] text-ink-soft">
-            <span className="text-accent">{profile.role}</span>
-            <span className="text-ink-muted"> · {profile.location}</span>
-          </p>
-          {profile.status && (
-            <p className="mt-1 text-sm text-ink-muted">{profile.status}</p>
-          )}
+          <p className="mt-2 text-[0.95rem] text-ink-muted">{profile.location}</p>
 
           <div className="mt-6 space-y-4 text-[0.98rem] leading-relaxed text-ink-soft">
             {profile.bio.map((para, i) => (

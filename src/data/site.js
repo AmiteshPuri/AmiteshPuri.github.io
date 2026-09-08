@@ -6,9 +6,7 @@ export const profile = {
   // The name is rendered with the first word bold and the rest light (al-folio style).
   firstName: 'Amitesh',
   lastName: 'Puri',
-  role: 'Scientific machine learning',
   location: 'West Bengal, India',
-  status: 'Seeking a PhD position for 2026',
   email: 'amiteshpuri007@gmail.com',
   github: 'https://github.com/AmiteshPuri',
   githubUser: 'AmiteshPuri',
@@ -20,7 +18,7 @@ export const profile = {
   // Two short paragraphs — general interests, no specific problem named.
   bio: [
     'I am broadly interested in mathematics, dynamical systems, and generative modelling, and in the places where they meet: how learned models can respect the structure of a system, and how to tell when a model stops being trustworthy. I like questions that can be pinned down and measured, and studies that hold everything fixed but one thing so the answer is clean.',
-    'I recently completed an M.Sc. in Applied Mathematics & Computing at MIT Manipal, and I am now looking for a PhD position in scientific machine learning. The reports below are self-contained studies I ran end to end — from setup through to evaluation — and each reports what the measurement returned, including the parts that cut against the expected story.',
+    'I recently completed an M.Sc. in Applied Mathematics & Computing at MIT Manipal. The reports below are self-contained studies I ran end to end, from setup through to evaluation, and each reports what the measurement returned, including the parts that cut against the expected story.',
   ],
 }
 
@@ -44,7 +42,7 @@ export const reports = [
     preview: 'reports/fm-ood-preview.png',
     code: 'https://github.com/AmiteshPuri/fm-ood-residual',
     blurb:
-      'Does adding a physics-residual penalty actually help a flow-matching model, and is the conflict-free PBFM formulation worth its complexity over a plain weighted residual? Measured across many seeds, sampling budgets, and graded distribution shifts, and reported as measured — including where the residual helps in distribution but reverses under shift.',
+      'Does adding a physics-residual penalty actually help a flow-matching model, and is the conflict-free PBFM formulation worth its complexity over a plain weighted residual? Measured across many seeds, sampling budgets, and graded distribution shifts, and reported as measured, including where the residual helps in distribution but reverses under shift.',
     tags: ['Flow Matching', 'physics residual', 'distribution shift', 'PBFM / ConFIG'],
   },
   {
@@ -57,7 +55,7 @@ export const reports = [
     preview: 'reports/fm-paths-preview.png',
     code: 'https://github.com/AmiteshPuri/FM-paths',
     blurb:
-      'Does the geometry of the generative probability path — a straight line versus a geodesic on a sphere — change the outcome of latent flow matching? With the data, latent space, network, optimiser and seed all held fixed, the two paths come out equal: a clean null result, with a controlled ablation showing geometry helps only when the data actually lie on the assumed manifold.',
+      'Does the geometry of the generative probability path, a straight line versus a geodesic on a sphere, change the outcome of latent flow matching? With the data, latent space, network, optimiser and seed all held fixed, the two paths come out equal: a clean null result, with a controlled ablation showing geometry helps only when the data actually lie on the assumed manifold.',
     tags: ['Flow Matching', 'Riemannian paths', 'latent generative model', 'VQ-VAE', 'ablation study'],
   },
   {

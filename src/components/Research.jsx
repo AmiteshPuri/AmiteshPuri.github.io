@@ -12,11 +12,6 @@ export default function Research() {
       <Reveal as="h2" className="section-title">
         Research
       </Reveal>
-      <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-ink-soft">
-        Self-contained studies in generative modelling and representation learning. Each holds
-        everything fixed but one design choice and reports what the measurement returns — including
-        the parts that cut against the expected story.
-      </p>
 
       <ol className="mt-8 space-y-8">
         {reports.map((r, i) => (

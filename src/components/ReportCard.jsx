@@ -37,31 +37,14 @@ export default function ReportCard({ report, index = 0, onOpen }) {
           <h3 className="text-[1.02rem] font-bold leading-snug text-ink transition-colors group-hover:text-accent">
             {report.title}
           </h3>
-          {report.subtitle && (
-            <p className="mt-0.5 text-[0.9rem] text-ink-soft">{report.subtitle}</p>
-          )}
-          <p className="mt-1 text-[0.9rem] text-ink-soft">
-            <span className="font-medium text-ink underline decoration-ink-faint underline-offset-2">
-              Amitesh Puri
-            </span>
-          </p>
-          <p className="mt-0.5 text-[0.85rem] text-ink-muted">
-            {report.venue} · {report.year}
-          </p>
 
           {/* short description at a glance */}
-          <p className="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft">{report.blurb}</p>
+          <p className="mt-2 text-[0.9rem] leading-relaxed text-ink-soft">{report.blurb}</p>
 
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <button type="button" className="btn-oline" onClick={() => onOpen(report)}>
-              Read
+              Report
             </button>
-            <a href={asset(report.pdf)} target="_blank" rel="noopener noreferrer" className="btn-oline">
-              PDF
-            </a>
-            <a href={report.code} target="_blank" rel="noopener noreferrer" className="btn-oline">
-              Code
-            </a>
           </div>
 
           <div className="mt-3 flex flex-wrap gap-1.5">
