@@ -72,9 +72,9 @@
            \href{https://github.com/AmiteshPuri/fm-ood-residual}{[GitHub]}}
 {\itshape Independent research report}\par\vspace{2pt}
 \begin{tight}
-  \item Ran a controlled comparison of a plain flow-matching baseline, a weighted physics residual (RFM), and the conflict-free PBFM formulation on a next-step generative task, across 5 seeds, 7 sampling budgets, and 4 graded distribution-shift families, with 95\% bootstrap confidence intervals.
-  \item In distribution, the one-line weighted residual ($\lambda = 0.005$) lowered relative L2 from 0.0148 to 0.0094 (about 37\%) and the PDE residual from 13.2 to 7.5 (about 44\%), with MMD down about 63\%, at a matched 16-step sampling budget.
-  \item Found the parameter-free PBFM statistically indistinguishable from the baseline, and reported that the residual's advantage did not carry over under stronger initial-condition and forcing shifts, where it often reversed.
+  \item Compared plain flow matching, a simple weighted physics residual, and the conflict-free PBFM method on a next-step generative task.
+  \item In distribution the weighted residual gave the best accuracy and physical consistency, lowering error by roughly a third over the baseline, while the parameter-free PBFM was no better than the baseline.
+  \item Its advantage did not hold under stronger distribution shift, where it often reversed.
 \end{tight}
 \vspace{5pt}
 \entrymini{When does a geodesic probability path help latent flow matching?}
@@ -82,9 +82,8 @@
            \href{https://github.com/AmiteshPuri/FM-paths}{[GitHub]}}
 {\itshape Independent research report}\par\vspace{2pt}
 \begin{tight}
-  \item Tested whether a straight-line or a geodesic probability path changes latent flow matching, holding the data, model, optimiser, and seed fixed across three converged, seed-matched runs.
-  \item Reached a controlled null result: the two paths were statistically indistinguishable on accuracy and, once seed noise was removed, on the spectrum, and an early single-seed lead for the straight line did not survive repetition.
-  \item Isolated the cause with an ablation: geodesic geometry helped only on manifold-structured data (geodesic penalty 0.63) and hurt off it (2.17), and measured the real VQ-VAE latents to be off the sphere (radius CV $\approx$ 0.27, intrinsic dimension $\approx$ 5.5 against an ambient 32).
+  \item Tested whether a straight-line or a geodesic probability path changes latent flow matching, with everything else held fixed.
+  \item Found no reliable difference between the two paths across repeated runs, and traced this to the data: path geometry helps only when the latents lie on the assumed manifold, which these did not.
 \end{tight}
 
 % ---------- Master's Research ----------
@@ -94,10 +93,9 @@
            \href{https://github.com/AmiteshPuri/MSc--Research-Project}{[GitHub]}}
 {\itshape Master's Research Report, Manipal Academy of Higher Education \quad Supervisor: Dr. Akansha Singh}\par\vspace{2pt}
 \begin{tight}
-  \item Studied the robustness of semi-supervised node classification under conditional distributional shift across several GNN architectures on benchmark datasets.
-  \item Added distance metrics as auxiliary regularisers that penalise divergence between training and test node representations, isolating each metric's effect in controlled ablations.
-  \item Used conformal prediction to evaluate coverage guarantees under distributional change.
-  \item Implemented all experiments in PyTorch with fixed random seeds and publicly available code.
+  \item Studied how semi-supervised node classification holds up under conditional distributional shift, across several GNN architectures on benchmark datasets.
+  \item Added distance metrics as auxiliary regularisers that penalise divergence between training and test representations, and measured each metric's effect on its own.
+  \item Used conformal prediction to check coverage under shift.
 \end{tight}
 
 % ---------- Technical Training ----------

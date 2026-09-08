@@ -54,7 +54,7 @@ export const reports = [
     preview: 'reports/fm-paths-preview.png',
     code: 'https://github.com/AmiteshPuri/FM-paths',
     blurb:
-      'Does the geometry of the generative probability path, a straight line versus a geodesic on a sphere, change the outcome of latent flow matching? With the data, latent space, network, optimiser and seed all held fixed, the two paths come out equal: a clean null result, with a controlled ablation showing geometry helps only when the data actually lie on the assumed manifold.',
+      'Does the geometry of the generative probability path, a straight line versus a geodesic on a sphere, change the outcome of latent flow matching? With the data, latent space, network, optimiser and seed all held fixed, the two paths come out equal: a clean null result, and an ablation shows path geometry helps only when the data actually lie on the assumed manifold.',
     tags: ['Flow Matching', 'Riemannian paths', 'latent generative model', 'VQ-VAE', 'ablation study'],
   },
   {
