@@ -1,0 +1,141 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+\usepackage[margin=1.9cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{accent}{RGB}{40,72,130}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+
+% Section headings: blue, bold, with a rule underneath.
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0pt}{}[{\color{accent}\titlerule[0.8pt]}]
+\titlespacing*{\section}{0pt}{11pt}{5pt}
+
+% Two-line entry with a right-aligned column (location / dates).
+\newcommand{\entry}[4]{%
+  {\bfseries #1}\hfill{#2}\\[1pt]%
+  {\itshape #3}\hfill{#4}\par\vspace{2pt}%
+}
+
+% One-line entry (title left, links right) with a robust two-column layout
+% so a long title never pushes the links onto their own line.
+\newcommand{\entrymini}[2]{%
+  \noindent\begin{minipage}[t]{0.76\textwidth}\raggedright\bfseries #1\end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.22\textwidth}\raggedleft\small #2\end{minipage}%
+  \par\vspace{1pt}}
+
+\newlist{tight}{itemize}{1}
+\setlist[tight]{leftmargin=1.35em, itemsep=1.5pt, topsep=2pt, parsep=0pt, label=\textbullet}
+
+\begin{document}
+
+% ---------- Header ----------
+\begin{center}
+  {\LARGE\bfseries Amitesh Puri}\\[4pt]
+  {\small (+91) 7602012472 \quad\textbar\quad
+   \href{mailto:amiteshpuri007@gmail.com}{amiteshpuri007@gmail.com} \quad\textbar\quad
+   \href{https://www.linkedin.com/in/amitesh-puri-7b6b991aa/}{LinkedIn} \quad\textbar\quad
+   \href{https://github.com/AmiteshPuri}{GitHub} \quad\textbar\quad
+   \href{https://amiteshpuri.github.io}{Website}}\\[2pt]
+  {\small West Bengal, India \textperiodcentered\ 721433}
+\end{center}
+
+% ---------- Education ----------
+\section{Education}
+\entry{Manipal Academy of Higher Education (MIT Manipal)}{Udupi, Karnataka, India}
+      {M.Sc. in Applied Mathematics and Computing \quad CGPA: 7.28 / 10}{Aug 2023 -- Jun 2025}
+\vspace{4pt}
+\entry{Ramnagar College, Vidyasagar University}{Paschim Medinipur, West Bengal, India}
+      {B.Sc. in Mathematics \quad Final Grade: 62\%}{Jul 2017 -- Oct 2020}
+\vspace{4pt}
+\entry{Kishorenagar Sachindra Siksha Sadan}{Contai, West Bengal, India}
+      {Higher Secondary (Class XII) \quad Final Grade: 74.5\%}{2014 -- 2016}
+
+% ---------- Research Experience ----------
+\section{Research Experience}
+\entrymini{Addressing Conditional Shift in Graph Data: An Empirical Study of Distance Metrics}
+          {\href{https://amiteshpuri.github.io/thesis/MSc_Project_Report.pdf}{[Report]}\ \
+           \href{https://github.com/AmiteshPuri/MSc--Research-Project}{[GitHub]}}
+{\itshape Master's Research Report, Manipal Academy of Higher Education \quad Supervisor: Dr. Akansha Singh}\par\vspace{2pt}
+\begin{tight}
+  \item Studied the robustness of semi-supervised node classification under conditional distributional shift across several GNN architectures on benchmark datasets.
+  \item Added distance metrics as auxiliary regularisers that penalise divergence between training and test node representations, isolating each metric's effect in controlled ablations.
+  \item Used conformal prediction to evaluate coverage guarantees under distributional change.
+  \item Implemented all experiments in PyTorch with fixed random seeds and publicly available code.
+\end{tight}
+
+% ---------- Research Projects ----------
+\section{Research Projects}
+\entrymini{Physics-residual Flow Matching under distribution shift}
+          {\href{https://amiteshpuri.github.io/reports/fm-ood-residual.pdf}{[Report]}\ \
+           \href{https://github.com/AmiteshPuri/fm-ood-residual}{[GitHub]}}
+{\itshape Independent research report}\hfill{2026}\par\vspace{2pt}
+\begin{tight}
+  \item Measured whether a physics-residual penalty improves a flow-matching generative model, and whether the conflict-free PBFM formulation is worth its added complexity over a plain weighted residual.
+  \item Ran the comparison across five seeds, seven sampling budgets, and four graded distribution shifts, and reported the results without selection.
+  \item Found that the weighted residual improved every in-distribution metric but did not hold up under shift, where it often reversed.
+\end{tight}
+\vspace{5pt}
+\entrymini{When does a geodesic probability path help latent flow matching?}
+          {\href{https://amiteshpuri.github.io/reports/fm-paths.pdf}{[Report]}\ \
+           \href{https://github.com/AmiteshPuri/FM-paths}{[GitHub]}}
+{\itshape Independent research report}\hfill{2026}\par\vspace{2pt}
+\begin{tight}
+  \item Tested whether a straight-line or a geodesic probability path changes the outcome of latent flow matching, with the data, model, optimiser, and seed held fixed.
+  \item Found the two paths equal across converged, seed-matched runs, a controlled null result.
+  \item Showed through an ablation that path geometry helps only when the data lie on the assumed manifold.
+\end{tight}
+
+% ---------- Technical Training ----------
+\section{Technical Training}
+\entry{Guided Projects Student}{Nov 2022 -- Feb 2023}
+      {The Machine Learning Company}{Remote}
+\begin{tight}
+  \item Completed applied projects in NLP and computer vision, including end-to-end pipelines for text classification, sentiment analysis, and language generation.
+  \item Trained and evaluated deep learning models for image classification and object detection tasks.
+\end{tight}
+\vspace{5pt}
+\entry{Data Science Trainee}{Aug 2021 -- Jan 2022}
+      {Evarcity}{Bangalore, India}
+\begin{tight}
+  \item Built Python-based data analysis and machine learning workflows on real-world datasets, with practical exposure to feature engineering, model evaluation, and data visualisation.
+\end{tight}
+
+% ---------- Personal Projects ----------
+\section{Personal Projects}
+\entrymini{Cyberbullying Detection}{\href{https://github.com/AmiteshPuri/twitter-sentiment-classification-cyberbullying-}{[GitHub]}}
+\begin{tight}
+  \item Developed a text classifier in TensorFlow for identifying cyberbullying in social media content. Deployed the model through a Gradio interface, with user feedback collected and managed using Argilla for iterative data annotation.
+\end{tight}
+\vspace{4pt}
+\entrymini{Text Generation with GPT-2}{\href{https://github.com/AmiteshPuri/text-generation-using-gpt2}{[GitHub]}}
+\begin{tight}
+  \item Fine-tuned GPT-2 on a domain-specific corpus and deployed an interactive text generation interface for user evaluation and qualitative assessment of output quality.
+\end{tight}
+\vspace{4pt}
+\entrymini{English to Hindi Machine Translation}{\href{https://github.com/AmiteshPuri/fine-tuned-translator-eng-hin}{[GitHub]}}
+\begin{tight}
+  \item Fine-tuned a transformer-based sequence-to-sequence model for English to Hindi translation and deployed the system through a Streamlit application with integrated text-to-speech output.
+\end{tight}
+
+% ---------- Technical Skills ----------
+\section{Technical Skills}
+\begin{tabular}{@{}p{3.9cm}@{\hspace{6pt}}p{12.6cm}@{}}
+  \textbf{Programming}        & Python, R \\[2pt]
+  \textbf{ML / DL Frameworks} & PyTorch, TensorFlow, Keras, Hugging Face Transformers, Scikit-learn, PyCaret \\[2pt]
+  \textbf{Data Analysis}      & Pandas, NumPy, Matplotlib, Seaborn, Data Visualization \\[2pt]
+  \textbf{Tools}              & Git, Gradio, Streamlit, Hugging Face Hub, Argilla \\
+\end{tabular}
+
+\end{document}

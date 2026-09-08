@@ -11,8 +11,7 @@ export const profile = {
   github: 'https://github.com/AmiteshPuri',
   githubUser: 'AmiteshPuri',
   scholar: null,
-  // Placeholder — set your profile URL.
-  linkedin: 'https://www.linkedin.com/',
+  linkedin: 'https://www.linkedin.com/in/amitesh-puri-7b6b991aa/',
   cv: 'cv/Amitesh_Puri_CV.pdf',
   photo: 'images/profile.jpg',
   // Two short paragraphs — general interests, no specific problem named.
@@ -137,6 +136,6 @@ export const skills = [
 export const socials = (p = profile) => [
   { label: 'Email', href: `mailto:${p.email}`, value: p.email, icon: 'mail' },
   { label: 'GitHub', href: p.github, value: `github.com/${p.githubUser}`, icon: 'github' },
-  { label: 'LinkedIn', href: p.linkedin, value: 'Set your profile URL', icon: 'linkedin' },
+  { label: 'LinkedIn', href: p.linkedin, value: 'linkedin.com/in/amitesh-puri', icon: 'linkedin' },
   { label: 'Curriculum vitae', href: p.cv, value: 'Amitesh_Puri_CV.pdf', icon: 'cv' },
 ]

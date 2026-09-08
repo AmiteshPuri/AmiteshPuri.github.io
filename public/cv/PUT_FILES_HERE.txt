@@ -1,2 +1,0 @@
-Drop your CV here as:  Amitesh_Puri_CV.pdf
-(Filename set in src/data/site.js -> profile.cv)
