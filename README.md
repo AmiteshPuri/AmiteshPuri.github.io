@@ -1,18 +1,13 @@
 # Amitesh Puri — research homepage
 
-A personal academic site built with **Vite + React + Tailwind CSS**. The centrepiece
-is two research reports on flow matching for 2D Navier–Stokes, each shown with a real
-page preview and an in-page PDF viewer.
+A personal academic homepage built with **Vite + React + Tailwind CSS**, styled after the
+[al-folio](https://github.com/alshedivat/al-folio) look (as on
+[bonevbs.github.io](https://bonevbs.github.io)): a single dark page with a light toggle, Roboto /
+Roboto Slab type, a green accent, and a "selected reports" list that shows each report with a
+page-1 preview, title, authors, and `abs / Read / PDF / Code` buttons.
 
-Deploys to **AmiteshPuri.github.io** via GitHub Actions — you push the source, Actions
-builds it and publishes.
-
-## Stack
-
-- Vite 5, React 18, Tailwind CSS 3 (dark mode via a class, palette driven by CSS
-  variables so light/dark share one source of truth)
-- `lucide-react` for icons
-- Type: Space Grotesk (display) + Inter (body); accent is a single teal token
+Deploys to **AmiteshPuri.github.io** via GitHub Actions — push the source, Actions builds it and
+publishes.
 
 ## Run locally
 
@@ -23,61 +18,56 @@ npm run build      # production build into dist/
 npm run preview    # serve the built dist/ locally
 ```
 
-Node 18+ is required. The embedded PDF viewer needs to be served over http (dev,
-preview, or the deployed site) — opening the built files straight off disk won't load
-the PDFs.
+Node 18+ required. The embedded PDF viewer needs to be served over http (dev, preview, or the
+deployed site) — opening the built files straight off disk won't load the PDFs.
 
-## Deploy to GitHub Pages
+## Deploy
 
-1. Push this project to the **root** of `AmiteshPuri/AmiteshPuri.github.io` on the
-   `main` branch (source only — `node_modules` and `dist` are gitignored).
-2. On GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. The included workflow (`.github/workflows/deploy.yml`) builds on every push to
-   `main` and deploys. The site goes live at `https://AmiteshPuri.github.io/`.
-
-Because this is a user site served from the domain root, `vite.config.js` sets
-`base: '/'`. Assets are referenced through `import.meta.env.BASE_URL`, so nothing
-breaks if you ever move it under a sub-path.
+The workflow at `.github/workflows/deploy.yml` builds on every push to `main` and deploys to Pages.
+One-time setup on GitHub: **Settings → Pages → Build and deployment → Source → GitHub Actions**.
+The site goes live at `https://AmiteshPuri.github.io/`. `vite.config.js` sets `base: '/'`.
 
 ## Editing content
 
-Almost everything lives in **`src/data/site.js`** — profile text, the two reports
-(titles, summaries, findings, tags, links), education, credentials, skills, and the
-other-work links. Edit that file; no component changes needed for normal updates.
+Almost everything lives in **`src/data/site.js`** — profile text and bio, the two reports (title,
+abstract, findings, tags, links), the code repositories, education, thesis, credentials, and
+skills. Edit that file; no component changes needed for normal updates.
 
-- **Reports.** The PDFs are in `public/reports/` (`fm-ood-residual.pdf`,
-  `fm-paths.pdf`) with page-1 previews (`*-preview.png`). To replace a report, drop in
-  a new PDF under the same name and regenerate its preview, e.g.:
-  ```bash
-  pdftoppm -png -f 1 -l 1 -scale-to-x 820 public/reports/fm-paths.pdf public/reports/fm-paths-preview
-  mv public/reports/fm-paths-preview-01.png public/reports/fm-paths-preview.png
-  ```
-- **Profile photo** — `public/images/profile.jpg` (currently the headshot from your
-  NPTEL certificate; replace with any square image).
-- **CV** — `public/cv/Amitesh_Puri_CV.pdf`.
-- **LinkedIn** — set your real profile URL in `src/data/site.js` (`profile.linkedin`);
-  it's a placeholder right now.
-- **Accent colour** — one token. Edit `--accent`, `--accent-deep`, `--accent-tint` in
-  `src/index.css` (both `:root` and `.dark`). To go back to the previous green, set
-  `--accent: 21 155 82`.
+### Files (all under `public/`, referenced from `site.js`)
+
+| What | Path | Set in `site.js` |
+|---|---|---|
+| Profile photo (square) | `public/images/profile.jpg` | `profile.photo` |
+| CV | `public/cv/Amitesh_Puri_CV.pdf` | `profile.cv` |
+| Report PDFs | `public/reports/fm-ood-residual.pdf`, `public/reports/fm-paths.pdf` | `reports[].pdf` |
+| Report page-1 previews | `public/reports/fm-ood-preview.png`, `public/reports/fm-paths-preview.png` | `reports[].preview` |
+| Thesis / MSc project report | `public/thesis/MSc_Project_Report.pdf` | `thesis.pdf` |
+| Certificates | `public/certificates/*.pdf` | `education[].cert`, `credentials[].pdf` |
+
+**CV is not added yet** — drop `Amitesh_Puri_CV.pdf` into `public/cv/` and the CV links light up.
+
+To regenerate a report preview after replacing a PDF (needs `pdftoppm` from poppler / MiKTeX):
+
+```bash
+pdftoppm -png -f 1 -l 1 -scale-to-x 500 public/reports/fm-paths.pdf public/reports/fm-paths-preview
+# then rename the produced *-01.png to fm-paths-preview.png
+```
 
 ## Structure
 
 ```
-index.html                 fonts, no-flash theme init
-vite.config.js
-tailwind.config.js
-postcss.config.js
+index.html                 fonts (Roboto / Roboto Slab), no-flash theme init (dark default)
+vite.config.js  tailwind.config.js  postcss.config.js
 .github/workflows/deploy.yml
-public/
-  reports/                 the two report PDFs + page previews
-  cv/  certificates/  records/  images/
+public/  reports/ cv/ certificates/ thesis/ images/
 src/
-  main.jsx  App.jsx  index.css  util.jsx
-  data/site.js             ← all content
-  components/              Nav, Hero, FlowMotif, Research, ReportCard,
-                           PdfModal, Background, OtherWork, Contact, Footer, ThemeToggle
+  main.jsx  App.jsx  index.css  util.jsx      (asset() + <Reveal>)
+  data/site.js                                ← all content
+  components/  Nav, ThemeToggle, About, Reports, ReportCard, PdfModal,
+               Code, Background, Contact, Footer
 ```
 
-The content is drawn from your CV, certificate, and the two reports — no fabricated
-results.
+Design: dark by default with a light toggle (persisted in `localStorage`); palette and type live as
+CSS variables in `src/index.css` (`--accent` is al-folio's green `#1db866` — change it there).
+
+Content is drawn from the CV, certificates, and the two reports — no fabricated results.

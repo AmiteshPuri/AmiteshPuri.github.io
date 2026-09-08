@@ -2,26 +2,26 @@ import { useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(() =>
-    typeof document !== 'undefined' && document.documentElement.classList.contains('dark'),
+  const [light, setLight] = useState(() =>
+    typeof document !== 'undefined' && document.documentElement.classList.contains('light'),
   )
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark)
+    document.documentElement.classList.toggle('light', light)
     try {
-      localStorage.setItem('theme', dark ? 'dark' : 'light')
+      localStorage.setItem('theme', light ? 'light' : 'dark')
     } catch (e) {}
-  }, [dark])
+  }, [light])
 
   return (
     <button
       type="button"
-      onClick={() => setDark((v) => !v)}
-      aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
-      title={dark ? 'Light theme' : 'Dark theme'}
-      className="grid h-9 w-9 place-items-center rounded-md text-ink-soft transition-colors hover:bg-accent-tint hover:text-accent"
+      onClick={() => setLight((v) => !v)}
+      aria-label={light ? 'Switch to dark theme' : 'Switch to light theme'}
+      title={light ? 'Dark theme' : 'Light theme'}
+      className="grid h-9 w-9 place-items-center rounded text-ink-soft transition-colors hover:text-accent"
     >
-      {dark ? <Sun size={18} /> : <Moon size={18} />}
+      {light ? <Moon size={17} /> : <Sun size={17} />}
     </button>
   )
 }

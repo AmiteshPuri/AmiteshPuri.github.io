@@ -1,0 +1,30 @@
+import { useState } from 'react'
+import { reports } from '../data/site.js'
+import { Reveal } from '../util.jsx'
+import ReportCard from './ReportCard.jsx'
+import PdfModal from './PdfModal.jsx'
+
+export default function Reports() {
+  const [active, setActive] = useState(null)
+
+  return (
+    <section id="reports" className="scroll-mt-16 border-t border-line pt-10 mt-14">
+      <Reveal as="h2" className="section-title">
+        Selected reports
+      </Reveal>
+      <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-ink-soft">
+        Two self-contained studies of flow matching as a generative surrogate for the 2D
+        Navier–Stokes equations. Each holds everything fixed but one design choice and reports what
+        the measurement returns — including the parts that cut against the expected story.
+      </p>
+
+      <ol className="mt-8 space-y-8">
+        {reports.map((r) => (
+          <ReportCard key={r.id} report={r} onOpen={setActive} />
+        ))}
+      </ol>
+
+      <PdfModal report={active} onClose={() => setActive(null)} />
+    </section>
+  )
+}

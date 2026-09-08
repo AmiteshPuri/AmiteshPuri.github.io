@@ -1,90 +1,86 @@
-import { BookOpen, ExternalLink, Github } from 'lucide-react'
+import { useState } from 'react'
 import { asset, Reveal } from '../util.jsx'
 
-export default function ReportCard({ report, reverse = false, onOpen }) {
+export default function ReportCard({ report, onOpen }) {
+  const [showAbstract, setShowAbstract] = useState(false)
+
   return (
-    <Reveal as="article" className="scroll-mt-24">
-      <div className="grid items-start gap-8 md:grid-cols-[minmax(0,300px)_1fr] md:gap-12">
-        {/* PDF page-1 preview — click to read */}
-        <figure className={reverse ? 'md:order-2' : ''}>
-          <button
-            type="button"
-            onClick={() => onOpen(report)}
-            className="group relative block w-full overflow-hidden rounded-lg border border-line bg-surface shadow-soft transition-shadow hover:shadow-lift"
-            aria-label={`Read ${report.title}`}
-          >
-            <img
-              src={asset(report.preview)}
-              alt={`First page of ${report.title}`}
-              loading="lazy"
-              className="block w-full"
-              onError={(e) => {
-                // Graceful placeholder until the real page-1 preview PNG is added.
-                if (e.currentTarget.dataset.fallback) return
-                e.currentTarget.dataset.fallback = '1'
-                e.currentTarget.src =
-                  'data:image/svg+xml;charset=utf-8,' +
-                  encodeURIComponent(
-                    `<svg xmlns='http://www.w3.org/2000/svg' width='300' height='389' viewBox='0 0 300 389'><rect width='300' height='389' fill='rgb(244,242,238)'/><rect x='0.5' y='0.5' width='299' height='388' fill='none' stroke='rgb(210,205,197)'/><g fill='rgb(150,156,164)' font-family='sans-serif' text-anchor='middle'><text x='150' y='188' font-size='15'>Report preview</text><text x='150' y='210' font-size='11'>(add PDF to activate)</text></g></svg>`,
-                  )
-              }}
-            />
-            <span className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-ink/45 via-transparent to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-100">
-              <span className="inline-flex items-center gap-1.5 rounded-md bg-surface px-3 py-1.5 text-xs font-medium text-ink">
-                <BookOpen size={14} className="text-accent" /> Read report
-              </span>
+    <Reveal as="li" className="scroll-mt-24">
+      <div className="grid gap-4 sm:grid-cols-[110px_1fr] sm:gap-6">
+        {/* page-1 preview — click to read in the modal */}
+        <button
+          type="button"
+          onClick={() => onOpen(report)}
+          className="hidden justify-self-start overflow-hidden rounded border border-line bg-surface transition-shadow hover:border-accent sm:block"
+          aria-label={`Read ${report.title}`}
+        >
+          <img
+            src={asset(report.preview)}
+            alt={`First page of ${report.title}`}
+            loading="lazy"
+            width="110"
+            className="block w-[110px]"
+            onError={(e) => {
+              if (e.currentTarget.dataset.fallback) return
+              e.currentTarget.dataset.fallback = '1'
+              e.currentTarget.src =
+                'data:image/svg+xml;charset=utf-8,' +
+                encodeURIComponent(
+                  `<svg xmlns='http://www.w3.org/2000/svg' width='110' height='142' viewBox='0 0 110 142'><rect width='110' height='142' fill='rgb(40,40,42)'/><rect x='0.5' y='0.5' width='109' height='141' fill='none' stroke='rgb(70,70,74)'/><text x='55' y='74' fill='rgb(140,140,144)' font-family='sans-serif' font-size='9' text-anchor='middle'>report</text></svg>`,
+                )
+            }}
+          />
+        </button>
+
+        <div className="min-w-0">
+          <h3 className="text-[1.02rem] font-bold leading-snug text-ink">{report.title}</h3>
+          {report.subtitle && (
+            <p className="mt-0.5 text-[0.9rem] text-ink-soft">{report.subtitle}</p>
+          )}
+          <p className="mt-1 text-[0.9rem] text-ink-soft">
+            <span className="font-medium text-ink underline decoration-ink-faint underline-offset-2">
+              Amitesh Puri
             </span>
-          </button>
-        </figure>
+          </p>
+          <p className="mt-0.5 text-[0.85rem] text-ink-muted">
+            {report.venue} · {report.year}
+          </p>
 
-        <div>
-          <div className="mb-1 text-sm text-ink-muted">{report.year}</div>
-          <h3 className="text-2xl font-semibold leading-tight text-ink">{report.title}</h3>
-          <p className="mt-1.5 text-ink-soft">{report.subtitle}</p>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <button type="button" className="btn-oline" onClick={() => setShowAbstract((v) => !v)}>
+              {showAbstract ? 'Hide' : 'abs'}
+            </button>
+            <button type="button" className="btn-oline" onClick={() => onOpen(report)}>
+              Read
+            </button>
+            <a href={asset(report.pdf)} target="_blank" rel="noopener noreferrer" className="btn-oline">
+              PDF
+            </a>
+            <a href={report.code} target="_blank" rel="noopener noreferrer" className="btn-oline">
+              Code
+            </a>
+          </div>
 
-          <p className="mt-5 leading-relaxed text-ink-soft">{report.summary}</p>
+          {showAbstract && (
+            <div className="mt-3 rounded border border-line bg-surface p-4">
+              <p className="text-[0.9rem] leading-relaxed text-ink-soft">{report.abstract}</p>
+              <ul className="mt-3 space-y-1.5">
+                {report.findings.map((f, i) => (
+                  <li key={i} className="flex gap-2.5 text-[0.86rem] leading-relaxed text-ink-soft">
+                    <span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-accent" aria-hidden="true" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-          <ul className="mt-5 space-y-2.5">
-            {report.findings.map((f, i) => (
-              <li key={i} className="flex gap-3 text-[0.95rem] leading-relaxed text-ink-soft">
-                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-accent" aria-hidden="true" />
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-1.5">
             {report.tags.map((t) => (
               <span key={t} className="chip">
                 {t}
               </span>
             ))}
-          </div>
-
-          <div className="mt-7 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={() => onOpen(report)}
-              className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-deep"
-            >
-              <BookOpen size={16} /> Read report
-            </button>
-            <a
-              href={asset(report.pdf)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
-            >
-              <ExternalLink size={16} /> Open PDF
-            </a>
-            <a
-              href={report.code}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
-            >
-              <Github size={16} /> View code
-            </a>
           </div>
         </div>
       </div>

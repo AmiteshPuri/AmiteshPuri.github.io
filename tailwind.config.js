@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
-  darkMode: 'class',
+  // Dark is the default; the `light` class on <html> switches palettes.
+  darkMode: ['selector', 'html:not(.light)'],
   theme: {
     extend: {
       colors: {
@@ -21,15 +22,11 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        slab: ['"Roboto Slab"', 'Roboto', 'ui-serif', 'serif'],
       },
-      maxWidth: { content: '72rem', prose: '46rem' },
-      boxShadow: {
-        soft: '0 1px 2px rgba(20,33,43,.05), 0 1px 1px rgba(20,33,43,.03)',
-        lift: '0 18px 50px -20px rgba(20,33,43,.28)',
-      },
-      letterSpacing: { tightish: '-0.015em' },
+      maxWidth: { content: '58rem', prose: '46rem' },
+      letterSpacing: { tightish: '-0.01em' },
     },
   },
   plugins: [],

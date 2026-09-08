@@ -1,3 +1,0 @@
-Drop certificate PDFs here. Currently referenced (src/data/site.js -> credentials[].pdf):
-  NPTEL_Math_Foundations_ML.pdf
-A credential with pdf:null shows "Certificate forthcoming" instead of a link.

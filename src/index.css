@@ -3,44 +3,44 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ *
- * Palette — one source of truth, light and dark share the same tokens.
- * Values are space-separated RGB channels so Tailwind can apply
- * <alpha-value> (see tailwind.config.js).
- * Accent is a single teal token. To go back to the previous green,
- * set --accent: 21 155 82 (and --accent-deep / --accent-tint to taste).
+ * Palette modelled on the al-folio theme (bonevbs.github.io).
+ * Dark is the default; adding `light` on <html> switches to the light
+ * palette. Values are space-separated RGB channels so Tailwind can
+ * apply <alpha-value> (see tailwind.config.js).
+ * Accent is al-folio's green (#1db866).
  * ------------------------------------------------------------------ */
 :root {
-  --paper: 250 249 246;
-  --surface: 255 255 255;
-  --line: 228 224 217;
+  --paper: 28 28 29;
+  --surface: 33 37 41;
+  --line: 66 66 70;
 
-  --ink: 24 33 43;
-  --ink-soft: 62 72 82;
-  --ink-muted: 110 118 128;
-  --ink-faint: 158 164 172;
+  --ink: 232 232 232;
+  --ink-soft: 199 199 199;
+  --ink-muted: 150 150 150;
+  --ink-faint: 110 110 112;
 
-  --accent: 13 148 136;
-  --accent-deep: 15 118 110;
-  --accent-tint: 209 240 236;
-
-  color-scheme: light;
-}
-
-.dark {
-  --paper: 15 20 27;
-  --surface: 23 30 39;
-  --line: 42 51 62;
-
-  --ink: 233 237 241;
-  --ink-soft: 191 199 208;
-  --ink-muted: 140 149 159;
-  --ink-faint: 92 101 112;
-
-  --accent: 45 212 191;
-  --accent-deep: 20 184 166;
-  --accent-tint: 17 63 59;
+  --accent: 29 184 102;
+  --accent-deep: 61 200 128;
+  --accent-tint: 30 48 38;
 
   color-scheme: dark;
+}
+
+html.light {
+  --paper: 255 255 255;
+  --surface: 246 247 248;
+  --line: 222 226 230;
+
+  --ink: 33 37 41;
+  --ink-soft: 73 80 87;
+  --ink-muted: 108 117 125;
+  --ink-faint: 150 157 165;
+
+  --accent: 21 155 82;
+  --accent-deep: 17 130 68;
+  --accent-tint: 223 245 233;
+
+  color-scheme: light;
 }
 
 @layer base {
@@ -55,48 +55,84 @@
   body {
     background-color: rgb(var(--paper));
     color: rgb(var(--ink));
-    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    font-family: Roboto, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  ::selection {
-    background-color: rgb(var(--accent-tint));
+  a {
+    color: rgb(var(--accent));
+    text-decoration: none;
+  }
+  a:hover {
     color: rgb(var(--accent-deep));
+  }
+  ::selection {
+    background-color: rgb(var(--accent) / 0.25);
   }
   :focus-visible {
     outline: 2px solid rgb(var(--accent));
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: 3px;
   }
 }
 
 @layer components {
   .u-container {
     width: 100%;
-    max-width: 72rem;
+    max-width: 58rem;
     margin-inline: auto;
     padding-inline: 1.5rem;
+  }
+
+  /* Section heading — al-folio uses light-weight Roboto for these. */
+  .section-title {
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2rem);
+    line-height: 1.2;
+    color: rgb(var(--ink));
   }
 
   .chip {
     display: inline-flex;
     align-items: center;
-    border-radius: 9999px;
+    border-radius: 6px;
     border: 1px solid rgb(var(--line));
     background-color: rgb(var(--surface));
-    padding: 0.2rem 0.7rem;
-    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-    font-size: 0.75rem;
-    line-height: 1.1;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.72rem;
+    line-height: 1.2;
     color: rgb(var(--ink-muted));
     white-space: nowrap;
+  }
+
+  /* Small outlined green button, like al-folio's abs / PDF / code links. */
+  .btn-oline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    border-radius: 5px;
+    border: 1px solid rgb(var(--accent));
+    color: rgb(var(--accent));
+    background: transparent;
+    padding: 0.16rem 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .btn-oline:hover {
+    background-color: rgb(var(--accent));
+    color: rgb(var(--paper));
   }
 
   /* Scroll-reveal used by <Reveal> in util.jsx */
   .reveal {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(14px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
     will-change: opacity, transform;
   }
   .reveal.is-in {
