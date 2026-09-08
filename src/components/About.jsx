@@ -33,7 +33,7 @@ export default function About() {
             width="176"
             height="176"
             loading="eager"
-            className="h-36 w-36 rounded-full object-cover ring-1 ring-line md:h-44 md:w-44"
+            className="h-36 w-36 rounded-full object-cover object-[center_18%] ring-1 ring-line md:h-44 md:w-44"
             onError={(e) => {
               e.currentTarget.style.display = 'none'
             }}

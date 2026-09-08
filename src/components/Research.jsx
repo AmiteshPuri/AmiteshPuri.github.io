@@ -13,9 +13,9 @@ export default function Research() {
         Research
       </Reveal>
       <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-ink-soft">
-        Two self-contained reports on flow matching as a generative surrogate for the 2D
-        Navier–Stokes equations. Each holds everything fixed but one design choice and reports what
-        the measurement returns — including the parts that cut against the expected story.
+        Self-contained studies in generative modelling and representation learning. Each holds
+        everything fixed but one design choice and reports what the measurement returns — including
+        the parts that cut against the expected story.
       </p>
 
       <ol className="mt-8 space-y-8">

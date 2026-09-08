@@ -49,10 +49,8 @@ export default function ReportCard({ report, index = 0, onOpen }) {
             {report.venue} · {report.year}
           </p>
 
-          {/* abstract at a glance */}
-          <p className="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft line-clamp-4">
-            {report.abstract}
-          </p>
+          {/* short description at a glance */}
+          <p className="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft">{report.blurb}</p>
 
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <button type="button" className="btn-oline" onClick={() => onOpen(report)}>

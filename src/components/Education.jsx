@@ -1,4 +1,4 @@
-import { credentials, education, skills, thesis } from '../data/site.js'
+import { credentials, education, skills } from '../data/site.js'
 import { asset, Reveal } from '../util.jsx'
 
 export default function Education() {
@@ -38,34 +38,6 @@ export default function Education() {
                 </li>
               ))}
             </ol>
-          </Reveal>
-
-          <Reveal>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-              {thesis.role}
-            </h3>
-            <p className="mt-3 text-[0.98rem] font-medium leading-snug text-ink">{thesis.title}</p>
-            <p className="mt-1 text-[0.85rem] text-ink-muted">{thesis.supervisor}</p>
-            <ul className="mt-3 space-y-2">
-              {thesis.points.map((p, i) => (
-                <li key={i} className="flex gap-2.5 text-[0.88rem] leading-relaxed text-ink-soft">
-                  <span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-accent" aria-hidden="true" />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {thesis.pdf && (
-                <a href={asset(thesis.pdf)} target="_blank" rel="noopener noreferrer" className="btn-oline">
-                  Report PDF
-                </a>
-              )}
-              {thesis.code && (
-                <a href={thesis.code} target="_blank" rel="noopener noreferrer" className="btn-oline">
-                  Code
-                </a>
-              )}
-            </div>
           </Reveal>
         </div>
 
