@@ -1,0 +1,11 @@
+Drop the two report PDFs and their page-1 preview PNGs here:
+
+  fm-ood-residual.pdf        fm-ood-preview.png
+  fm-paths.pdf               fm-paths-preview.png
+
+Generate a preview from a PDF (needs poppler / pdftoppm):
+  pdftoppm -png -f 1 -l 1 -scale-to-x 820 fm-paths.pdf fm-paths-preview
+  mv fm-paths-preview-01.png fm-paths-preview.png
+
+Until the PNGs are added, the cards show a neutral placeholder (no broken image).
+The filenames are set in src/data/site.js (reports[].pdf / reports[].preview).

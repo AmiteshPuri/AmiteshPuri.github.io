@@ -1,0 +1,2 @@
+Drop a square profile photo here as:  profile.jpg
+(Filename set in src/data/site.js -> profile.photo. If absent, the hero simply hides the photo.)
