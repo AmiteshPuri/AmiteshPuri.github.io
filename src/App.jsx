@@ -1,8 +1,7 @@
 import Nav from './components/Nav.jsx'
 import About from './components/About.jsx'
-import Reports from './components/Reports.jsx'
-import Code from './components/Code.jsx'
-import Background from './components/Background.jsx'
+import Research from './components/Research.jsx'
+import Education from './components/Education.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 
@@ -12,9 +11,8 @@ export default function App() {
       <Nav />
       <main className="u-container">
         <About />
-        <Reports />
-        <Code />
-        <Background />
+        <Research />
+        <Education />
         <Contact />
       </main>
       <Footer />

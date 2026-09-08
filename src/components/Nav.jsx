@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { nav, profile } from '../data/site.js'
-import ThemeToggle from './ThemeToggle.jsx'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -68,8 +67,6 @@ export default function Nav() {
               <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           </button>
-
-          <ThemeToggle />
         </div>
       </nav>
 

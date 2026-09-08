@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
-  // Dark is the default; the `light` class on <html> switches palettes.
-  darkMode: ['selector', 'html:not(.light)'],
   theme: {
     extend: {
       colors: {

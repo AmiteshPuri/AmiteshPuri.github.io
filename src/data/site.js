@@ -26,9 +26,8 @@ export const profile = {
 
 export const nav = [
   { label: 'About', href: '#top' },
-  { label: 'Reports', href: '#reports' },
-  { label: 'Code', href: '#code' },
-  { label: 'Background', href: '#background' },
+  { label: 'Research', href: '#research' },
+  { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },
 ]
 

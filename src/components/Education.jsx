@@ -1,18 +1,18 @@
 import { credentials, education, skills, thesis } from '../data/site.js'
 import { asset, Reveal } from '../util.jsx'
 
-export default function Background() {
+export default function Education() {
   return (
-    <section id="background" className="scroll-mt-16 border-t border-line pt-10 mt-14">
+    <section id="education" className="scroll-mt-16 border-t border-line pt-10 mt-14">
       <Reveal as="h2" className="section-title">
-        Background
+        Education
       </Reveal>
 
       <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-14">
         {/* Left: education + thesis */}
         <div className="space-y-9">
           <Reveal>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">Education</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">Degrees</h3>
             <ol className="mt-4 space-y-5">
               {education.map((e) => (
                 <li key={e.degree}>

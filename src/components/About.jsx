@@ -24,21 +24,6 @@ export default function About() {
               <p key={i}>{para}</p>
             ))}
           </div>
-
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-            <a href={`mailto:${profile.email}`} className="text-accent hover:text-accent-deep">
-              {profile.email}
-            </a>
-            <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-deep">
-              GitHub
-            </a>
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-deep">
-              LinkedIn
-            </a>
-            <a href={asset(profile.cv)} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-deep">
-              CV
-            </a>
-          </div>
         </div>
 
         <div className="order-first mx-auto md:order-none md:mx-0">

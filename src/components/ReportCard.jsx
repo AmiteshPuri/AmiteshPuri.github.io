@@ -1,17 +1,18 @@
-import { useState } from 'react'
 import { asset, Reveal } from '../util.jsx'
 
-export default function ReportCard({ report, onOpen }) {
-  const [showAbstract, setShowAbstract] = useState(false)
-
+export default function ReportCard({ report, index = 0, onOpen }) {
   return (
-    <Reveal as="li" className="scroll-mt-24">
+    <Reveal
+      as="li"
+      className="report-card group scroll-mt-24"
+      style={{ transitionDelay: `${index * 110}ms` }}
+    >
       <div className="grid gap-4 sm:grid-cols-[110px_1fr] sm:gap-6">
         {/* page-1 preview — click to read in the modal */}
         <button
           type="button"
           onClick={() => onOpen(report)}
-          className="hidden justify-self-start overflow-hidden rounded border border-line bg-surface transition-shadow hover:border-accent sm:block"
+          className="hidden justify-self-start overflow-hidden rounded border border-line bg-surface shadow-sm transition-shadow duration-300 hover:border-accent group-hover:shadow-md sm:block"
           aria-label={`Read ${report.title}`}
         >
           <img
@@ -19,21 +20,23 @@ export default function ReportCard({ report, onOpen }) {
             alt={`First page of ${report.title}`}
             loading="lazy"
             width="110"
-            className="block w-[110px]"
+            className="block w-[110px] transition-transform duration-500 ease-out group-hover:scale-[1.05]"
             onError={(e) => {
               if (e.currentTarget.dataset.fallback) return
               e.currentTarget.dataset.fallback = '1'
               e.currentTarget.src =
                 'data:image/svg+xml;charset=utf-8,' +
                 encodeURIComponent(
-                  `<svg xmlns='http://www.w3.org/2000/svg' width='110' height='142' viewBox='0 0 110 142'><rect width='110' height='142' fill='rgb(40,40,42)'/><rect x='0.5' y='0.5' width='109' height='141' fill='none' stroke='rgb(70,70,74)'/><text x='55' y='74' fill='rgb(140,140,144)' font-family='sans-serif' font-size='9' text-anchor='middle'>report</text></svg>`,
+                  `<svg xmlns='http://www.w3.org/2000/svg' width='110' height='142' viewBox='0 0 110 142'><rect width='110' height='142' fill='rgb(240,241,242)'/><rect x='0.5' y='0.5' width='109' height='141' fill='none' stroke='rgb(210,214,218)'/><text x='55' y='74' fill='rgb(150,157,165)' font-family='sans-serif' font-size='9' text-anchor='middle'>report</text></svg>`,
                 )
             }}
           />
         </button>
 
         <div className="min-w-0">
-          <h3 className="text-[1.02rem] font-bold leading-snug text-ink">{report.title}</h3>
+          <h3 className="text-[1.02rem] font-bold leading-snug text-ink transition-colors group-hover:text-accent">
+            {report.title}
+          </h3>
           {report.subtitle && (
             <p className="mt-0.5 text-[0.9rem] text-ink-soft">{report.subtitle}</p>
           )}
@@ -46,10 +49,12 @@ export default function ReportCard({ report, onOpen }) {
             {report.venue} · {report.year}
           </p>
 
+          {/* abstract at a glance */}
+          <p className="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft line-clamp-4">
+            {report.abstract}
+          </p>
+
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            <button type="button" className="btn-oline" onClick={() => setShowAbstract((v) => !v)}>
-              {showAbstract ? 'Hide' : 'abs'}
-            </button>
             <button type="button" className="btn-oline" onClick={() => onOpen(report)}>
               Read
             </button>
@@ -60,20 +65,6 @@ export default function ReportCard({ report, onOpen }) {
               Code
             </a>
           </div>
-
-          {showAbstract && (
-            <div className="mt-3 rounded border border-line bg-surface p-4">
-              <p className="text-[0.9rem] leading-relaxed text-ink-soft">{report.abstract}</p>
-              <ul className="mt-3 space-y-1.5">
-                {report.findings.map((f, i) => (
-                  <li key={i} className="flex gap-2.5 text-[0.86rem] leading-relaxed text-ink-soft">
-                    <span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-accent" aria-hidden="true" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
 
           <div className="mt-3 flex flex-wrap gap-1.5">
             {report.tags.map((t) => (

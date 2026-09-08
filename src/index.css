@@ -3,30 +3,12 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ *
- * Palette modelled on the al-folio theme (bonevbs.github.io).
- * Dark is the default; adding `light` on <html> switches to the light
- * palette. Values are space-separated RGB channels so Tailwind can
- * apply <alpha-value> (see tailwind.config.js).
- * Accent is al-folio's green (#1db866).
+ * Single light theme, laid out like the al-folio look
+ * (bonevbs.github.io) but on a light ground: Roboto / Roboto Slab
+ * type, a green accent. Values are space-separated RGB channels so
+ * Tailwind can apply <alpha-value> (see tailwind.config.js).
  * ------------------------------------------------------------------ */
 :root {
-  --paper: 28 28 29;
-  --surface: 33 37 41;
-  --line: 66 66 70;
-
-  --ink: 232 232 232;
-  --ink-soft: 199 199 199;
-  --ink-muted: 150 150 150;
-  --ink-faint: 110 110 112;
-
-  --accent: 29 184 102;
-  --accent-deep: 61 200 128;
-  --accent-tint: 30 48 38;
-
-  color-scheme: dark;
-}
-
-html.light {
   --paper: 255 255 255;
   --surface: 246 247 248;
   --line: 222 226 230;
@@ -68,7 +50,7 @@ html.light {
     color: rgb(var(--accent-deep));
   }
   ::selection {
-    background-color: rgb(var(--accent) / 0.25);
+    background-color: rgb(var(--accent) / 0.18);
   }
   :focus-visible {
     outline: 2px solid rgb(var(--accent));
