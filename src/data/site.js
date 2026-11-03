@@ -1,5 +1,5 @@
 // All site content in one place. Everything here is drawn from Amitesh's CV,
-// certificates, and the two uploaded reports — no invented results.
+// certificates, reports and publication record, with no invented results.
 
 export const profile = {
   name: 'Amitesh Puri',
@@ -10,22 +10,52 @@ export const profile = {
   email: 'amiteshpuri007@gmail.com',
   github: 'https://github.com/AmiteshPuri',
   githubUser: 'AmiteshPuri',
-  scholar: null,
+  scholar: 'https://scholar.google.com/citations?user=-C3E7g8AAAAJ',
   linkedin: 'https://www.linkedin.com/in/amitesh-puri-7b6b991aa/',
   cv: 'cv/Amitesh_Puri_CV.pdf',
   photo: 'images/profile.jpg',
-  // Two short paragraphs — general interests, no specific problem named.
+  // Short paragraphs: the research direction, the background behind it, then how the reports are done.
   bio: [
-    'I am broadly interested in mathematics, dynamical systems, and generative modelling, and in the places where they meet: how learned models can respect the structure of a system, and how to tell when a model stops being trustworthy. I like questions that can be pinned down and measured, and studies that hold everything fixed but one thing so the answer is clean.',
-    'I recently completed an M.Sc. in Applied Mathematics & Computing at MIT Manipal. The reports below are self-contained studies I ran end to end, from setup through to evaluation, and each reports what the measurement returned, including the parts that cut against the expected story.',
+    'I am interested in machine learning for physical systems, where mathematics, dynamical systems and generative modelling meet. A numerical solver can be applied to a new system once its governing equations are written down, whereas a learned model usually has to be trained again. I want to understand how learned representations can capture the structure of physical dynamics, so that a model stays reliable when parameters, regimes or the equations themselves change, and adapts to a new system with little or no fine-tuning.',
+    'I completed an M.Sc. in Applied Mathematics and Computing at Manipal Academy of Higher Education in 2025, and have since taken courses from IISc Bangalore on the mathematical foundations of machine learning and on generative AI. My master’s project on distribution shift in graph learning and my later experiments with generative models of fluid flow raised the same question: how well does a learned model capture the structure of a system, and does that hold up when conditions change?',
+    'I like questions that can be pinned down and measured, and studies that hold everything fixed but one thing so the answer is clean. The reports below are self-contained studies I ran end to end, from setup through to evaluation, and each reports what the measurement returned, including the parts that cut against the expected story.',
   ],
 }
+
+// Shown as a short list under the bio.
+export const interests = [
+  {
+    title: 'Transferable representations of physical dynamics',
+    text: 'Latent representations that stay consistent across regimes, parameters and forms of the governing equations, so that a new system needs little or no fine-tuning.',
+  },
+  {
+    title: 'Generative modelling of physical trajectories',
+    text: 'Flow matching, diffusion models and stochastic interpolants, and predictors that work in a learned latent space, for uncertainty, multimodality and long rollouts.',
+  },
+  {
+    title: 'Physical consistency under distribution shift',
+    text: 'Building governing equations, conservation laws and other scientific priors into learning, and testing whether the benefit holds away from the training data.',
+  },
+]
 
 export const nav = [
   { label: 'About', href: '#top' },
   { label: 'Research', href: '#research' },
   { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },
+]
+
+// Peer-reviewed publications, newest first. `self` is shown in bold in the author list.
+export const publications = [
+  {
+    title: 'Message Passing Graph Neural Networks: A Study',
+    authors: ['Simran', 'A. Puri', 'S. Akansha'],
+    self: 'A. Puri',
+    venue: 'Global and Stochastic Analysis',
+    details: '12(1), 80–89',
+    year: '2025',
+    url: 'https://doi.org/10.64837/gsa.12.1.7',
+  },
 ]
 
 // The reports — the centrepiece. Blurbs are short, self-contained descriptions
@@ -84,7 +114,7 @@ export const education = [
     degree: 'B.Sc. Mathematics',
     place: 'Ramnagar College, Vidyasagar University',
     when: 'Jul 2017 – Oct 2020',
-    detail: 'Final grade 62%',
+    detail: 'Final grade 6.21 / 10',
     cert: null,
   },
   {
@@ -111,11 +141,11 @@ export const thesis = {
 
 export const credentials = [
   {
-    name: 'Generative Modelling from First Principles',
-    org: 'IISc',
-    when: '2026',
-    detail: 'Ranked 6th in the final project assessment; certificate forthcoming',
-    pdf: null,
+    name: 'Generative AI – Principles and Applications',
+    org: 'IISc Bangalore',
+    when: 'May – Jul 2026',
+    detail: 'Grade A+; ranked 6th in the final project assessment',
+    pdf: 'certificates/IISc_Generative_AI_Principles_and_Applications.pdf',
   },
   {
     name: 'Mathematical Foundations of Machine Learning',
@@ -133,9 +163,11 @@ export const skills = [
   { group: 'Tools', items: ['Git', 'Gradio', 'Streamlit', 'Hugging Face Hub', 'Argilla'] },
 ]
 
-export const socials = (p = profile) => [
-  { label: 'Email', href: `mailto:${p.email}`, value: p.email, icon: 'mail' },
-  { label: 'GitHub', href: p.github, value: `github.com/${p.githubUser}`, icon: 'github' },
-  { label: 'LinkedIn', href: p.linkedin, value: 'linkedin.com/in/amitesh-puri', icon: 'linkedin' },
-  { label: 'Curriculum vitae', href: p.cv, value: 'Amitesh_Puri_CV.pdf', icon: 'cv' },
-]
+export const socials = (p = profile) =>
+  [
+    { label: 'Email', href: `mailto:${p.email}`, value: p.email, icon: 'mail' },
+    { label: 'GitHub', href: p.github, value: `github.com/${p.githubUser}`, icon: 'github' },
+    p.scholar && { label: 'Google Scholar', href: p.scholar, value: 'scholar.google.com', icon: 'scholar' },
+    { label: 'LinkedIn', href: p.linkedin, value: 'linkedin.com/in/amitesh-puri', icon: 'linkedin' },
+    { label: 'Curriculum vitae', href: p.cv, value: 'Amitesh_Puri_CV.pdf', icon: 'cv' },
+  ].filter(Boolean)

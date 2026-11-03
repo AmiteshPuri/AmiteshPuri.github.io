@@ -16,7 +16,7 @@ export default function Contact() {
       <ul className="mt-6 space-y-2.5">
         {items.map((s) => {
           const href = s.icon === 'cv' ? asset(s.href) : s.href
-          const external = s.icon === 'github' || s.icon === 'linkedin' || s.icon === 'cv'
+          const external = s.icon !== 'mail'
           return (
             <li key={s.label} className="flex flex-wrap items-baseline gap-x-3 text-[0.92rem]">
               <span className="w-28 shrink-0 text-ink-muted">{s.label}</span>

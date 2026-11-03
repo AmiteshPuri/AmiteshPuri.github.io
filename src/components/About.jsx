@@ -1,4 +1,4 @@
-import { profile } from '../data/site.js'
+import { interests, profile } from '../data/site.js'
 import { asset } from '../util.jsx'
 
 export default function About() {
@@ -18,6 +18,28 @@ export default function About() {
               <p key={i}>{para}</p>
             ))}
           </div>
+
+          {interests.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+                Research interests
+              </h2>
+              <ul className="mt-3 space-y-2.5">
+                {interests.map((it) => (
+                  <li
+                    key={it.title}
+                    className="relative pl-4 text-[0.93rem] leading-relaxed text-ink-soft"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-0 top-[0.6em] h-1.5 w-1.5 rounded-full bg-accent"
+                    />
+                    <span className="font-medium text-ink">{it.title}.</span> {it.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <div className="order-first mx-auto md:order-none md:mx-0">
