@@ -5,8 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Permissions the deploy-pages action needs.
+# Permissions the deploy-pages action needs, plus actions: read for the wait step below.
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -46,6 +47,25 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # If Settings -> Pages -> Source is "Deploy from a branch", GitHub also runs its own
+      # branch build ("pages build and deployment"), which publishes the raw source files
+      # and leaves the site blank. Whichever deployment is created last is what visitors
+      # see, so wait for that build to finish and deploy after it. When the source is
+      # "GitHub Actions" that build doesn't run, and this step finishes straight away.
+      - name: Wait for GitHub's branch build to finish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for i in $(seq 1 30); do
+            running=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$GITHUB_SHA" \
+              --jq '[.workflow_runs[] | select(.path == "dynamic/pages/pages-build-deployment" and .status != "completed")] | length' \
+              || echo unknown)
+            echo "Branch builds still running for this commit: $running"
+            [ "$running" = "0" ] && exit 0
+            sleep 10
+          done
+          echo "Still running after 5 minutes; deploying anyway."
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
