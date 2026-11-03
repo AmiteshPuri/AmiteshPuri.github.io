@@ -17,7 +17,7 @@ export const profile = {
   // Short paragraphs: the research direction, the background behind it, then why dynamical systems and how the reports are done.
   bio: [
     'I am interested in machine learning for physical systems, where mathematics, dynamical systems and generative modelling meet. A numerical solver can be applied to a new system once its governing equations are written down, whereas a learned model usually has to be trained again. I want to understand how learned representations can capture the structure of physical dynamics, so that a model stays reliable when parameters, regimes or the equations themselves change, and adapts to a new system with little or no fine-tuning.',
-    'I completed my M.Sc. in Applied Mathematics and Computing at Manipal Academy of Higher Education, and have done coursework from IISc Bangalore on the mathematical foundations of machine learning and on generative AI from first principles. My master’s project on distribution shift in graph learning and my later experiments with generative models of fluid flow raised the same question: how well does a learned model capture the structure of a system, and how much does that hold up under OOD settings.',
+    'I completed my M.Sc. in Applied Mathematics and Computing at Manipal Academy of Higher Education, and have done coursework from IISc Bangalore on the mathematical foundations of machine learning and on generative AI from first principles. My master’s project on distribution shift in graph learning and my later experiments with generative models of fluid flow raised the same question: how well does a learned model capture the structure of a system, and how much does that hold up under OOD settings?',
     'What draws me to dynamical systems is that a learned model’s errors rarely stay small. They build up over a rollout, so a model that is accurate one step ahead can drift far from the true trajectory, especially once conditions move away from the training data.',
   ],
 }
@@ -30,7 +30,7 @@ export const interests = [
   },
   {
     title: 'Generative modelling of physical trajectories',
-    text: 'Flow matching, diffusion models and stochastic interpolants, and predictors that work in a learned latent space, for uncertainty, multimodality and long rollouts inference.',
+    text: 'Flow matching, diffusion models and stochastic interpolants, and predictors that work in a learned latent space, for uncertainty, multimodality and long-rollout inference.',
   },
   {
     title: 'Physical consistency under distribution shift',
@@ -128,7 +128,7 @@ export const education = [
     degree: 'Higher Secondary (Class XII)',
     place: 'Kishorenagar Sachindra Siksha Sadan',
     when: '2014 – 2016',
-    detail: '74.5%',
+    detail: '76.4%',
     cert: null,
   },
 ]
@@ -151,7 +151,7 @@ export const credentials = [
     name: 'Generative AI – Principles and Applications',
     org: 'IISc Bangalore',
     when: 'May – Jul 2026',
-    detail: 'Grade A+; ranked 6th in the final project assessment',
+    detail: 'Grade A+',
     pdf: 'certificates/IISc_Generative_AI_Principles_and_Applications.pdf',
   },
   {
