@@ -3,8 +3,9 @@
 A personal academic homepage built with **Vite + React + Tailwind CSS**, styled after the
 [al-folio](https://github.com/alshedivat/al-folio) look (as on
 [bonevbs.github.io](https://bonevbs.github.io)): a single light page, Roboto / Roboto Slab type,
-a green accent, a bio with research interests, and a research list (publications, then reports
-with a page-1 preview, short blurb, tags, and a Report button that opens the PDF).
+a green accent, a bio with research interests, and a research list (publications, then the
+independent and master's research reports, each with a page-1 preview, short blurb, tags, and a
+Report button that opens the PDF).
 
 Deploys to **AmiteshPuri.github.io** via GitHub Actions — push the source, Actions builds it and
 publishes.
@@ -30,8 +31,9 @@ The site goes live at `https://AmiteshPuri.github.io/`. `vite.config.js` sets `b
 ## Editing content
 
 Almost everything lives in **`src/data/site.js`**: profile text, bio and research interests,
-publications, the reports (title, blurb, tags, links), education, credentials, and skills. Edit
-that file; no component changes needed for normal updates.
+publications, the reports (title, blurb, tags, links, and the `group` heading each one is listed
+under), education, credentials, and skills. Edit that file; no component changes needed for
+normal updates.
 
 ### Files (all under `public/`, referenced from `site.js`)
 

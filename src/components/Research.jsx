@@ -18,8 +18,24 @@ function Authors({ names, self }) {
   )
 }
 
+// Reports grouped under their `group` heading, in the order they appear in site.js.
+function groupReports(list) {
+  const groups = []
+  for (const r of list) {
+    const title = r.group || 'Reports'
+    let g = groups.find((x) => x.title === title)
+    if (!g) {
+      g = { title, items: [] }
+      groups.push(g)
+    }
+    g.items.push(r)
+  }
+  return groups
+}
+
 export default function Research() {
   const [active, setActive] = useState(null)
+  const groups = groupReports(reports)
 
   return (
     <section id="research" className="scroll-mt-16 border-t border-line pt-10 mt-14">
@@ -57,17 +73,21 @@ export default function Research() {
         </Reveal>
       )}
 
-      <Reveal
-        as="h3"
-        className={`${publications.length > 0 ? 'mt-10' : 'mt-8'} text-xs font-semibold uppercase tracking-wider text-ink-muted`}
-      >
-        Reports
-      </Reveal>
-      <ol className="mt-4 space-y-8">
-        {reports.map((r, i) => (
-          <ReportCard key={r.id} report={r} index={i} onOpen={setActive} />
-        ))}
-      </ol>
+      {groups.map((g, gi) => (
+        <div key={g.title}>
+          <Reveal
+            as="h3"
+            className={`${gi === 0 && publications.length === 0 ? 'mt-8' : 'mt-10'} text-xs font-semibold uppercase tracking-wider text-ink-muted`}
+          >
+            {g.title}
+          </Reveal>
+          <ol className="mt-4 space-y-8">
+            {g.items.map((r, i) => (
+              <ReportCard key={r.id} report={r} index={i} onOpen={setActive} />
+            ))}
+          </ol>
+        </div>
+      ))}
 
       <PdfModal report={active} onClose={() => setActive(null)} />
     </section>

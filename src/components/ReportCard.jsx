@@ -34,9 +34,9 @@ export default function ReportCard({ report, index = 0, onOpen }) {
         </button>
 
         <div className="min-w-0">
-          <h3 className="text-[1.02rem] font-bold leading-snug text-ink transition-colors group-hover:text-accent">
+          <h4 className="text-[1.02rem] font-bold leading-snug text-ink transition-colors group-hover:text-accent">
             {report.title}
-          </h3>
+          </h4>
 
           {/* short description at a glance */}
           <p className="mt-2 text-[0.9rem] leading-relaxed text-ink-soft">{report.blurb}</p>

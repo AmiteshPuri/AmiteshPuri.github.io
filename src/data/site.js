@@ -14,11 +14,11 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/amitesh-puri-7b6b991aa/',
   cv: 'cv/Amitesh_Puri_CV.pdf',
   photo: 'images/profile.jpg',
-  // Short paragraphs: the research direction, the background behind it, then how the reports are done.
+  // Short paragraphs: the research direction, the background behind it, then why dynamical systems and how the reports are done.
   bio: [
     'I am interested in machine learning for physical systems, where mathematics, dynamical systems and generative modelling meet. A numerical solver can be applied to a new system once its governing equations are written down, whereas a learned model usually has to be trained again. I want to understand how learned representations can capture the structure of physical dynamics, so that a model stays reliable when parameters, regimes or the equations themselves change, and adapts to a new system with little or no fine-tuning.',
     'I completed an M.Sc. in Applied Mathematics and Computing at Manipal Academy of Higher Education in 2025, and have since taken courses from IISc Bangalore on the mathematical foundations of machine learning and on generative AI. My master’s project on distribution shift in graph learning and my later experiments with generative models of fluid flow raised the same question: how well does a learned model capture the structure of a system, and does that hold up when conditions change?',
-    'I like questions that can be pinned down and measured, and studies that hold everything fixed but one thing so the answer is clean. The reports below are self-contained studies I ran end to end, from setup through to evaluation, and each reports what the measurement returned, including the parts that cut against the expected story.',
+    'What draws me to dynamical systems is that a learned model’s errors rarely stay small. They build up over a rollout, so a model that is accurate one step ahead can drift far from the true trajectory, especially once conditions move away from the training data. In the reports below I test one change at a time, and I have kept in the results that did not go the way I expected.',
   ],
 }
 
@@ -59,10 +59,11 @@ export const publications = [
 ]
 
 // The reports — the centrepiece. Blurbs are short, self-contained descriptions
-// (the full detail lives in each PDF).
+// (the full detail lives in each PDF). Reports are listed under their `group` heading.
 export const reports = [
   {
     id: 'fm-ood',
+    group: 'Independent research reports',
     title: 'Physics-residual Flow Matching under distribution shift',
     subtitle: 'A study on next-step generative modelling',
     venue: 'Independent research report',
@@ -76,6 +77,7 @@ export const reports = [
   },
   {
     id: 'fm-paths',
+    group: 'Independent research reports',
     title: 'When does a geodesic probability path help latent flow matching?',
     subtitle: 'A controlled study on a latent PDE surrogate',
     venue: 'Independent research report',
@@ -89,6 +91,7 @@ export const reports = [
   },
   {
     id: 'msc-graph',
+    group: 'Master’s research report',
     title: 'Addressing conditional shift in graph data: an empirical study of distance metrics',
     subtitle: 'M.Sc. research report · MIT Manipal',
     venue: 'M.Sc. research report',
