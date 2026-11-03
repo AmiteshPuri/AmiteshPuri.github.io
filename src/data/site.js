@@ -75,6 +75,9 @@ export const reports = [
       'Does adding a physics-residual penalty actually help a flow-matching model, and is the conflict-free PBFM formulation worth its complexity over a plain weighted residual? Measured across many seeds, sampling budgets, and graded distribution shifts, and reported as measured, including where the residual helps in distribution but reverses under shift.',
     tags: ['Flow Matching', 'physics residual', 'distribution shift', 'PBFM / ConFIG'],
   },
+  // The geodesic-path report is hidden from the site for now while it is being corrected.
+  // To show it again, delete the two lines with /* and */ around it.
+  /*
   {
     id: 'fm-paths',
     group: 'Independent research reports',
@@ -89,6 +92,7 @@ export const reports = [
       'Does the geometry of the generative probability path, a straight line versus a geodesic on a sphere, change the outcome of latent flow matching? With the data, latent space, network, optimiser and seed all held fixed, the two paths come out equal: a clean null result, and an ablation shows path geometry helps only when the data actually lie on the assumed manifold.',
     tags: ['Flow Matching', 'Riemannian paths', 'latent generative model', 'VQ-VAE', 'ablation study'],
   },
+  */
   {
     id: 'msc-graph',
     group: 'Master’s research report',
